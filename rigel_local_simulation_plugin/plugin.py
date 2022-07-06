@@ -121,6 +121,7 @@ class Plugin(BaseModel):
             ros_common_env_variables = ['ROS_MASTER_URI=http://master:11311', f'ROS_HOSTNAME={package.name}']
 
             # Ensure that all ROS nodes connect to the same ROS master node
+            assert package.environment  # NOTE: required by mypy to ensure that the addition is possible
             package.environment = package.environment + ros_common_env_variables
 
             node_container = self.run_ros_package_container(package)
@@ -133,7 +134,7 @@ class Plugin(BaseModel):
                 rosbridge_client = ROSBridgeClient(node_container_addr, 9090)
                 self._message_logger.info(f"Connected to ROS bridge server at '{node_container_addr}:9090'")
 
-                self._requirements_manager.connect_requirements_to_rosbridge(rosbridge_client)
+                self._requirements_manager.connect_to_rosbridge(rosbridge_client)
 
     def run(self) -> None:
         """
