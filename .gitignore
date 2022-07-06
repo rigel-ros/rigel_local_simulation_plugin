@@ -91,6 +91,7 @@ Dockerfile
 .mypy_cache
 .nox
 .pytest_cache
+.venv/
 dist/
 *.egg-info/
 *.spec
