@@ -5,7 +5,7 @@ from rigelcore.clients import (
     ROSBridgeClient
 )
 from rigelcore.loggers import MessageLogger
-from rigelcore.simulations import SimulationRequirementsManager
+from rigelcore.simulations.requirements import SimulationRequirementsManager
 from pydantic import BaseModel, PrivateAttr
 from typing import Any, Dict, List, Optional
 
@@ -129,7 +129,7 @@ class Plugin(BaseModel):
 
             if package.introspection:
 
-                # Connect to ROS bridge inside containter
+                # Connect to ROS bridge inside container
                 rosbridge_client = ROSBridgeClient(node_container_addr, 9090)
                 self._message_logger.info(f"Connected to ROS bridge server at '{node_container_addr}:9090'")
 
