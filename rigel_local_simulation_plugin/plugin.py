@@ -121,7 +121,7 @@ class Plugin(BaseModel):
             ros_common_env_variables = ['ROS_MASTER_URI=http://master:11311', f'ROS_HOSTNAME={package.name}']
 
             # Ensure that all ROS nodes connect to the same ROS master node
-            assert package.environment  # NOTE: required by mypy to ensure that the addition is possible
+            assert package.environment is not None  # NOTE: required by mypy to ensure that the addition is possible
             package.environment = package.environment + ros_common_env_variables
 
             node_container = self.run_ros_package_container(package)
