@@ -3,4 +3,4 @@ from .plugin import (  # noqa: F401
     ROSBridgeClient,
 )
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
